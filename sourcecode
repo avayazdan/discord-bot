@@ -1,0 +1,29 @@
+import discord
+import os
+from discord.ext.commands import Bot
+from discord.ext import commands
+import asyncio
+import time
+import random
+
+Client = discord.Client()
+client = commands.Bot(command_prefix = "!")
+sad_words = ["sad", "depressed", "unhappy", "cba", "angry"]
+starter_encouragements = ["misery is the only thing I know", "as my father said: learn to embrace the darkness in life", "grow up, you're an addams", "I like being miserable", "dark and gloomy is the only way to be"]
+
+@client.event
+async def on_ready():
+    print("Lurch is ready, master")
+
+@client.event
+async def on_message(message):
+        msg = message.content
+        if message.content.startswith('lurch'):
+         await message.channel.send('You rang')
+         if message.content.startwith('Hmm'):
+            await message.channel.send('Uh-h-h-h-h-h-h-h-uh!')
+        else:
+         if any(word in msg for word in sad_words):
+          await message.channel.send(random.choice(starter_encouragements))
+    
+client.run("ODcwNzgxNjAwNTU0Njk2Nzc1.YQRwjw.KG7VOKnueMiHXmU-Ie6b5cV38Ik",bot=True)
